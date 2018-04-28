@@ -27,27 +27,29 @@ public class main_program
 			}
 			buf_temp.close();
 			buf = new BufferedReader(new FileReader("source_code"));
-			System.out.println();
-			System.out.println("======");
-			System.out.printf("%s","OUTPUT");
-		    System.out.println();
-		    System.out.println("======");
-			System.out.println("==================================================================================");
-		    System.out.printf("%s %15s %s %60s %s","|","TOKEN","|","TYPE","|");
-		    System.out.println();
-		    System.out.println("==================================================================================");
-			while (type != 8)
-			{
-				String temp_tok = scanner();
-				if (ch!='$')
-				{
-					System.out.printf("%s %15s %s %60s %s","|",temp_tok,"|",type_list[type-1],"|");
-					System.out.println();
-					System.out.println("----------------------------------------------------------------------------------");
-				}
-			}
-			System.out.println();
-			System.out.println();
+			parser_final P= new parser_final();
+			P.parser();
+//			System.out.println();
+//			System.out.println("======");
+//			System.out.printf("%s","OUTPUT");
+//		    System.out.println();
+//		    System.out.println("======");
+//			System.out.println("==================================================================================");
+//		    System.out.printf("%s %15s %s %60s %s","|","TOKEN","|","TYPE","|");
+//		    System.out.println();
+//		    System.out.println("==================================================================================");
+//			while (type != 8)
+//			{
+//				String temp_tok = scanner();
+//				if (ch!='$')
+//				{
+//					System.out.printf("%s %15s %s %60s %s","|",temp_tok,"|",type_list[type-1],"|");
+//					System.out.println();
+//					System.out.println("----------------------------------------------------------------------------------");
+//				}
+//			}
+//			System.out.println();
+//			System.out.println();
 		    System.out.printf("%36s","SYMBOL TABLE");
 		    System.out.println();
 			System.out.println("==============================================================");
@@ -590,7 +592,7 @@ public class main_program
 		        	 	buf.reset(); 
 			        	type=1;
 			        return token;
-		        	}
+		        }
 				else
 		        {
 		        		buf.reset();
@@ -731,7 +733,7 @@ public class main_program
 			case 54:
 				buf.mark(1);
 				ch = (char) buf.read();				
-				if(ch==' '||ch=='\n'||ch=='\r')
+				if(ch==' '||ch=='\n'||ch=='\r'||ch==';')
 		        {	          
 		        	 	state = 1;
 		        	 	buf.reset(); 
@@ -772,7 +774,7 @@ public class main_program
 				{
 					state = 58; token+=ch;
 				}
-				else if(ch == ' ') 
+				else if(ch == ' ' || ch==';') 
 				{
 	        			state=1;
 	        			type=2;
@@ -830,7 +832,7 @@ public class main_program
 			case 63:
 				buf.mark(1);
 				ch = (char) buf.read();				
-				if(ch==' '||ch=='\n'||ch=='\r')
+				if(ch==' '||ch=='\n'||ch=='\r'||ch==';')
 		        {	          
 		        	 	state = 1;
 		        	 	buf.reset(); 
@@ -898,7 +900,7 @@ public class main_program
 			case 69:
 				buf.mark(1);
 				ch = (char) buf.read();				
-				if(ch==' '||ch=='\n'||ch=='\r')
+				if(ch==' '||ch=='\n'||ch=='\r' || ch==';')
 		        {	          
 		        	 	state = 1;
 		        	 	buf.reset(); 
@@ -1086,7 +1088,7 @@ public class main_program
 			case 87:
 				buf.mark(1);
 				ch = (char) buf.read();				
-				if(ch==' '||ch=='\n'||ch=='\r')
+				if(ch==' '||ch=='\n'||ch=='\r'||ch==';')
 		        {	          
 		        	 	state = 1;
 		        	 	buf.reset(); 
@@ -1267,7 +1269,14 @@ public class main_program
 				{
 					state = 98; token+=ch;
 				}
-				else if(ch == ' ' || ch =='\n')
+				else if (Integer.parseInt(token) <= 1000000)
+				{
+					error =2;
+        			type=errorhandler(error);
+        			buf.reset();
+        			return token;
+				}	
+				else if(ch == ' ' || ch =='\n' || ch==';')
 				{
 	        			state=1;
 	        			type=3;
@@ -1282,7 +1291,7 @@ public class main_program
 				}
 				else
 				{
-					error =2;
+						error =2;
 	        			type=errorhandler(error);
 	        			buf.reset();
 	        			return token;

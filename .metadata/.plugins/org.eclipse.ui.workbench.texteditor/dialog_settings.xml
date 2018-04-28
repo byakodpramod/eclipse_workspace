@@ -2,12 +2,17 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="errorhandler" key="selection"/>
+		<item value="type" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="type"/>
+			<item value="tok"/>
+			<item value="]"/>
+			<item value="["/>
+			<item value="[34,4], [35,4], [36,8], [37,4,1,13,14,16,17], [38,4,1,13,14,16,17], [38,8,30], [39,4], [39,1], [39,13],"/>
 			<item value="errorhandler"/>
 			<item value="error"/>
 			<item value="//temp = (int) ch;"/>
@@ -18,13 +23,10 @@
 			<item value="type= 6;"/>
 			<item value="type= 6"/>
 			<item value="type = 6"/>
-			<item value="type"/>
-			<item value="ch"/>
-			<item value="x"/>
-			<item value="buf.read()"/>
-			<item value="line"/>
 		</list>
 		<list key="replacehistory">
+			<item value="}"/>
+			<item value="{"/>
 			<item value=""/>
 			<item value="//temp = (int) ch;"/>
 			<item value="temp = (int) ch;"/>

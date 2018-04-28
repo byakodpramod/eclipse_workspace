@@ -521,3 +521,12 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2018-04-21 12:32:16.143
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.core.jobs 4 2 2018-04-26 00:48:38.349
+!MESSAGE An internal error occurred during: "Polling news feeds".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.recommenders.internal.news.rcp.FeedDescriptors.getRegisteredFeeds(FeedDescriptors.java:54)
+	at org.eclipse.recommenders.internal.news.rcp.NewsRcpPreferences.getFeedDescriptors(NewsRcpPreferences.java:59)
+	at org.eclipse.recommenders.internal.news.rcp.poll.PollFeedsJob.run(PollFeedsJob.java:54)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
